@@ -39,7 +39,7 @@ function createFilmCard(film, isCurrent) {
 }
 
 function createRatingItem(username, ratingData, letterboxdSlug) {
-    const { rating } = ratingData;
+    const { rating, watchedDate, review, isRewatch } = ratingData;
     
     if (!rating) {
         return `
@@ -51,11 +51,16 @@ function createRatingItem(username, ratingData, letterboxdSlug) {
     }
     
     const letterboxdUrl = `https://letterboxd.com/${username}/film/${letterboxdSlug}/`;
+    const rewatchBadge = isRewatch ? ' <span class="rewatch-badge">↻</span>' : '';
+    const watchedInfo = watchedDate ? `<div class="watched-date">Gesehen: ${formatDate(watchedDate)}</div>` : '';
+    const reviewText = review ? `<div class="review-text">"${escapeHtml(review)}"</div>` : '';
     
     return `
         <div class="rating-item">
-            <div class="rating-name">${username}</div>
+            <div class="rating-name">${username}${rewatchBadge}</div>
             <div class="stars">${createStars(rating)}</div>
+            ${watchedInfo}
+            ${reviewText}
             <a href="${letterboxdUrl}" target="_blank" class="letterboxd-link">→ Letterboxd</a>
         </div>
     `;
@@ -90,6 +95,12 @@ function formatDate(dateString) {
         month: '2-digit', 
         year: 'numeric' 
     });
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
 }
 
 // Lade Filme beim Seitenaufruf
