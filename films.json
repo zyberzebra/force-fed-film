@@ -4,11 +4,19 @@
     "year": 2024,
     "clubDate": "2025-11-01",
     "letterboxdSlug": "the-outrun",
+    "tmdbId": null,
+    "posterUrl": null,
     "derschaki": {
-      "rating": null
+      "rating": null,
+      "watchedDate": null,
+      "review": null,
+      "isRewatch": false
     },
     "zebrastuhl": {
-      "rating": null
+      "rating": null,
+      "watchedDate": null,
+      "review": null,
+      "isRewatch": false
     }
   },
   "pastFilms": [
@@ -17,11 +25,19 @@
       "year": 2021,
       "clubDate": "2025-10-15",
       "letterboxdSlug": "boiling-point-2021",
+      "tmdbId": "807196",
+      "posterUrl": "https://a.ltrbxd.com/resized/film-poster/7/2/4/2/2/5/724225-boiling-point-0-600-0-900-crop.jpg?v=0b18b70ab9",
       "derschaki": {
-        "rating": 3.5
+        "rating": 3.5,
+        "watchedDate": "2025-10-17",
+        "review": "Guter Film, cool gemacht\nSchauspieler gut, story halt typisch für nen one shot, kurz und knackig",
+        "isRewatch": false
       },
       "zebrastuhl": {
-        "rating": 3.0
+        "rating": 4.0,
+        "watchedDate": "2025-10-15",
+        "review": null,
+        "isRewatch": false
       }
     }
   ]
