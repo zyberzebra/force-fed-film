@@ -1,13 +1,12 @@
 import json
 import feedparser
 import re
-from html import unescape
 from bs4 import BeautifulSoup
 
 # RSS Feed URLs
 FEEDS = {
     'derschaki': 'https://letterboxd.com/derschaki/rss/',
-    'zebrastuhl': 'https://letterboxd.com/zebrastuhl/rss/'  # Anpassen
+    'zebrastuhl': 'https://letterboxd.com/zebrastuhl/rss/'
 }
 
 def extract_review_text(description):
@@ -15,17 +14,12 @@ def extract_review_text(description):
     if not description:
         return None
     
-    # Parse HTML
     soup = BeautifulSoup(description, 'html.parser')
     
-    # Entferne Bild-Tags
     for img in soup.find_all('img'):
         img.decompose()
     
-    # Hole Text
     text = soup.get_text(separator='\n').strip()
-    
-    # Entferne leere Zeilen
     lines = [line.strip() for line in text.split('\n') if line.strip()]
     text = '\n'.join(lines)
     
@@ -41,14 +35,12 @@ def extract_poster_url(description):
 
 def parse_rating_from_entry(entry):
     """Extrahiert Rating aus dem Letterboxd RSS Entry"""
-    # Primär: letterboxd:memberRating
     if hasattr(entry, 'letterboxd_memberrating'):
         try:
             return float(entry.letterboxd_memberrating)
         except:
             pass
     
-    # Fallback: Parse aus Titel
     match = re.search(r'★+½?', entry.title)
     if not match:
         return None
@@ -85,7 +77,6 @@ def fetch_ratings():
             review = extract_review_text(entry.get('description', ''))
             poster = extract_poster_url(entry.get('description', ''))
             
-            # Extrahiere weitere Daten
             watched_date = getattr(entry, 'letterboxd_watcheddate', None)
             is_rewatch = getattr(entry, 'letterboxd_rewatch', 'No') == 'Yes'
             film_title = getattr(entry, 'letterboxd_filmtitle', None)
@@ -102,7 +93,6 @@ def fetch_ratings():
                     'users': {}
                 }
             
-            # Update Poster falls noch nicht vorhanden
             if poster and not all_data[slug_normalized]['posterUrl']:
                 all_data[slug_normalized]['posterUrl'] = poster
             
@@ -125,15 +115,79 @@ def update_films_json():
     rss_data = fetch_ratings()
     updated = False
     
-    # Update current film
     current_slug = normalize_slug(data['currentFilm']['letterboxdSlug'])
     if current_slug in rss_data:
         print(f"\n🎬 Updating current film: {data['currentFilm']['title']}")
         film_data = rss_data[current_slug]
         
-        # Update Metadaten
         if film_data.get('tmdbId') and not data['currentFilm'].get('tmdbId'):
             data['currentFilm']['tmdbId'] = film_data['tmdbId']
             updated = True
         
-        if film_data.get('posterUrl') and not data['currentFilm'].get('
+        if film_data.get('posterUrl') and not data['currentFilm'].get('posterUrl'):
+            data['currentFilm']['posterUrl'] = film_data['posterUrl']
+            updated = True
+        
+        for user in ['derschaki', 'zebrastuhl']:
+            if user in film_data['users']:
+                user_data = film_data['users'][user]
+                
+                if user_data['rating']:
+                    data['currentFilm'][user]['rating'] = user_data['rating']
+                    updated = True
+                
+                if user_data['watchedDate']:
+                    data['currentFilm'][user]['watchedDate'] = user_data['watchedDate']
+                    updated = True
+                
+                if user_data['review']:
+                    data['currentFilm'][user]['review'] = user_data['review']
+                    updated = True
+                
+                data['currentFilm'][user]['isRewatch'] = user_data['isRewatch']
+                
+                print(f"  {user}: {user_data['rating']}★ | Watched: {user_data['watchedDate']}")
+    
+    for film in data['pastFilms']:
+        film_slug = normalize_slug(film['letterboxdSlug'])
+        if film_slug in rss_data:
+            print(f"\n🎬 Updating: {film['title']}")
+            film_data = rss_data[film_slug]
+            
+            if film_data.get('tmdbId') and not film.get('tmdbId'):
+                film['tmdbId'] = film_data['tmdbId']
+                updated = True
+            
+            if film_data.get('posterUrl') and not film.get('posterUrl'):
+                film['posterUrl'] = film_data['posterUrl']
+                updated = True
+            
+            for user in ['derschaki', 'zebrastuhl']:
+                if user in film_data['users']:
+                    user_data = film_data['users'][user]
+                    
+                    if user_data['rating'] and film[user]['rating'] != user_data['rating']:
+                        film[user]['rating'] = user_data['rating']
+                        updated = True
+                    
+                    if user_data['watchedDate']:
+                        film[user]['watchedDate'] = user_data['watchedDate']
+                        updated = True
+                    
+                    if user_data['review']:
+                        film[user]['review'] = user_data['review']
+                        updated = True
+                    
+                    film[user]['isRewatch'] = user_data['isRewatch']
+                    
+                    print(f"  {user}: {user_data['rating']}★")
+    
+    if updated:
+        with open('films.json', 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+        print("\n✅ Data updated successfully!")
+    else:
+        print("\nℹ️  No updates found")
+
+if __name__ == '__main__':
+    update_films_json()
