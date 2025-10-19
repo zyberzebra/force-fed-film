@@ -8,63 +8,63 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
     color: #e0e0e0;
-    line-height: 1.6;
+    line-height: 1.4;
     min-height: 100vh;
+    padding: 1rem;
 }
 
 .container {
-    max-width: 900px;
+    max-width: 800px;
     margin: 0 auto;
-    padding: 2rem 1rem;
 }
 
 header {
     text-align: center;
-    margin-bottom: 3rem;
-    padding: 2rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem 1rem;
     background: rgba(0, 0, 0, 0.4);
-    border-radius: 12px;
+    border-radius: 8px;
     backdrop-filter: blur(10px);
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: #fff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
 }
 
 .subtitle {
     color: #ff6b6b;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     font-weight: 500;
 }
 
 h2 {
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
     color: #fff;
     border-bottom: 2px solid #ff6b6b;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.3rem;
 }
 
 .current-film {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .film-card {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.8rem;
     backdrop-filter: blur(10px);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .film-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .current-film .film-card {
@@ -76,53 +76,53 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 1rem;
-    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
     gap: 0.5rem;
 }
 
 .film-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: #fff;
     font-weight: 600;
 }
 
 .film-year {
     color: #999;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
+    white-space: nowrap;
 }
 
 .club-date {
     color: #ff6b6b;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    margin-bottom: 0.8rem;
     font-weight: 500;
 }
 
 .ratings {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin-top: 1rem;
+    gap: 0.8rem;
 }
 
 .rating-item {
     background: rgba(0, 0, 0, 0.3);
-    padding: 1rem;
-    border-radius: 8px;
+    padding: 0.7rem;
+    border-radius: 6px;
 }
 
 .rating-name {
     color: #ff6b6b;
     font-weight: 600;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    font-size: 0.85rem;
 }
 
 .stars {
     display: flex;
-    gap: 2px;
-    font-size: 1.3rem;
+    gap: 1px;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
 }
 
 .star {
@@ -142,10 +142,9 @@ h2 {
 
 .letterboxd-link {
     display: inline-block;
-    margin-top: 0.5rem;
     color: #00d735;
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     transition: color 0.2s;
 }
 
@@ -156,20 +155,30 @@ h2 {
 .pending {
     color: #666;
     font-style: italic;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 @media (max-width: 600px) {
+    body {
+        padding: 0.5rem;
+    }
+    
     h1 {
-        font-size: 2rem;
+        font-size: 1.6rem;
     }
     
     .ratings {
         grid-template-columns: 1fr;
+        gap: 0.6rem;
     }
     
     .film-header {
         flex-direction: column;
         align-items: flex-start;
+        gap: 0.2rem;
+    }
+    
+    .film-title {
+        font-size: 1.1rem;
     }
 }
