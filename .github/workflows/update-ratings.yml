@@ -20,17 +20,24 @@ jobs:
         
     - name: Install dependencies
       run: |
-        pip install feedparser requests
+        pip install -r requirements.txt
         
     - name: Update ratings from RSS
       run: |
         python update_ratings.py
         
-    - name: Commit changes
-      run: |
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git add films.json
-        git diff --quiet && git diff --staged --quiet || git commit -m "🎬 Auto-update ratings from Letterboxd"
-        git push
-
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v5
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: '🎬 Auto-update: Film ratings from Letterboxd'
+        title: '🎬 Update Film Ratings'
+        body: |
+          Automatisches Update der Film-Bewertungen aus den Letterboxd RSS-Feeds.
+          
+          - Ratings aktualisiert
+          - Reviews importiert
+          - Watch-Dates erfasst
+          - Rewatch-Status gesetzt
+        branch: auto-update-ratings
+        delete-branch: true
