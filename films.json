@@ -1,15 +1,14 @@
 {
   "currentFilm": {
-    "title": "The Substance",
+    "title": "The Outrun",
     "year": 2024,
     "clubDate": "2025-11-01",
+    "letterboxdSlug": "the-outrun",
     "derschaki": {
-      "rating": null,
-      "letterboxdUrl": null
+      "rating": null
     },
     "zebrastuhl": {
-      "rating": null,
-      "letterboxdUrl": null
+      "rating": null
     }
   },
   "pastFilms": [
@@ -17,26 +16,12 @@
       "title": "Boiling Point",
       "year": 2021,
       "clubDate": "2025-10-15",
+      "letterboxdSlug": "boiling-point-2021",
       "derschaki": {
-        "rating": 3.5,
-        "letterboxdUrl": "https://letterboxd.com/derschaki/film/boiling-point-2021/"
+        "rating": 3.5
       },
       "zebrastuhl": {
-        "rating": 4.0,
-        "letterboxdUrl": "https://letterboxd.com/zebrastuhl/film/boiling-point-2021/"
-      }
-    },
-    {
-      "title": "Perfect Days",
-      "year": 2023,
-      "clubDate": "2025-10-01",
-      "derschaki": {
-        "rating": 4.5,
-        "letterboxdUrl": "https://letterboxd.com/derschaki/film/perfect-days-2023/"
-      },
-      "zebrastuhl": {
-        "rating": 4.0,
-        "letterboxdUrl": "https://letterboxd.com/zebrastuhl/film/perfect-days-2023/"
+        "rating": 4.0
       }
     }
   ]
