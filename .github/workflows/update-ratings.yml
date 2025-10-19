@@ -1,0 +1,36 @@
+name: Update Film Ratings
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # Täglich um 2 Uhr morgens
+  workflow_dispatch:  # Manuelles Triggern möglich
+
+jobs:
+  update-ratings:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        
+    - name: Install dependencies
+      run: |
+        pip install feedparser requests
+        
+    - name: Update ratings from RSS
+      run: |
+        python update_ratings.py
+        
+    - name: Commit changes
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add films.json
+        git diff --quiet && git diff --staged --quiet || git commit -m "🎬 Auto-update ratings from Letterboxd"
+        git push
+
