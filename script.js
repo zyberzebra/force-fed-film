@@ -31,30 +31,32 @@ function createFilmCard(film, isCurrent) {
             </div>
             <div class="club-date">${dateLabel}: ${formatDate(film.clubDate)}</div>
             <div class="ratings">
-                ${createRatingItem('derschaki', film.derschaki)}
-                ${createRatingItem('zebrastuhl', film.zebrastuhl)}
+                ${createRatingItem('derschaki', film.derschaki, film.letterboxdSlug)}
+                ${createRatingItem('zebrastuhl', film.zebrastuhl, film.letterboxdSlug)}
             </div>
         </div>
     `;
 }
 
-function createRatingItem(name, ratingData) {
-    const { rating, letterboxdUrl } = ratingData;
+function createRatingItem(username, ratingData, letterboxdSlug) {
+    const { rating } = ratingData;
     
     if (!rating) {
         return `
             <div class="rating-item">
-                <div class="rating-name">${name}</div>
+                <div class="rating-name">${username}</div>
                 <div class="pending">Noch nicht bewertet</div>
             </div>
         `;
     }
     
+    const letterboxdUrl = `https://letterboxd.com/${username}/film/${letterboxdSlug}/`;
+    
     return `
         <div class="rating-item">
-            <div class="rating-name">${name}</div>
+            <div class="rating-name">${username}</div>
             <div class="stars">${createStars(rating)}</div>
-            ${letterboxdUrl ? `<a href="${letterboxdUrl}" target="_blank" class="letterboxd-link">→ Letterboxd</a>` : ''}
+            <a href="${letterboxdUrl}" target="_blank" class="letterboxd-link">→ Letterboxd</a>
         </div>
     `;
 }
