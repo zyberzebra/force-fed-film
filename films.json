@@ -21,25 +21,25 @@
   },
   "pastFilms": [
     {
-    "title": "The Outrun",
-    "year": 2024,
-    "clubDate": "2025-11-01",
-    "letterboxdSlug": "the-outrun",
-    "tmdbId": "785542",
-    "posterUrl": "https://a.ltrbxd.com/resized/film-poster/7/0/4/1/5/5/704155-the-outrun-0-600-0-900-crop.jpg?v=5727e4a6cc",
-    "derschaki": {
-      "rating": 3.0,
-      "watchedDate": "2025-10-20",
-      "review": "War echt nicht schlecht.\nInteressantes (, aber schwieriges) Thema, was hier ganz gut aufgezeigt wird.\nFand den Faktor der Umgebung bzw. der Mitmenschen und den Einfluss den es auf sie hat gut dargestellt.",
-      "isRewatch": true
+      "title": "The Outrun",
+      "year": 2024,
+      "clubDate": "2025-11-01",
+      "letterboxdSlug": "the-outrun",
+      "tmdbId": "785542",
+      "posterUrl": "https://a.ltrbxd.com/resized/film-poster/7/0/4/1/5/5/704155-the-outrun-0-600-0-900-crop.jpg?v=5727e4a6cc",
+      "derschaki": {
+        "rating": 3.0,
+        "watchedDate": "2025-10-20",
+        "review": "War echt nicht schlecht.\nInteressantes (, aber schwieriges) Thema, was hier ganz gut aufgezeigt wird.\nFand den Faktor der Umgebung bzw. der Mitmenschen und den Einfluss den es auf sie hat gut dargestellt.",
+        "isRewatch": true
+      },
+      "zebrastuhl": {
+        "rating": 1.5,
+        "watchedDate": "2025-10-29",
+        "review": "Das hat für mich mal so garnicht funktioniert. Wahnsinnig zerdehnt und mit Zeitsprüngen versehen die mich jedes mal kurz orientierungslos gelassen haben wo wir gerade sind.\nZudem konnte ich die Handlung irgendwie nicht “abkaufen” und das ist bei so einem Thema auf 2 Stunden dann natürlich ein Problem 🥲\n#forcefedfilmclub",
+        "isRewatch": false
+      }
     },
-    "zebrastuhl": {
-      "rating": null,
-      "watchedDate": null,
-      "review": null,
-      "isRewatch": false
-    }
-  },
     {
       "title": "Boiling Point",
       "year": 2021,
