@@ -1,5 +1,26 @@
 {
   "currentFilm": {
+    "title": "Ballad of a Small Player",
+    "year": 2025,
+    "clubDate": "2025-11-15",
+    "letterboxdSlug": "ballad-of-a-small-player",
+    "tmdbId": "1272166",
+    "posterUrl": "https://a.ltrbxd.com/resized/film-poster/1/1/5/5/8/8/5/1155885-ballad-of-a-small-player-0-460-0-690-crop.jpg?v=5de53d4a3c",
+    "derschaki": {
+      "rating": null,
+      "watchedDate": null,
+      "review": null,
+      "isRewatch": false
+    },
+    "zebrastuhl": {
+      "rating": null,
+      "watchedDate": null,
+      "review": null,
+      "isRewatch": false
+    }
+  },
+  "pastFilms": [
+    {
     "title": "The Outrun",
     "year": 2024,
     "clubDate": "2025-11-01",
@@ -19,7 +40,6 @@
       "isRewatch": false
     }
   },
-  "pastFilms": [
     {
       "title": "Boiling Point",
       "year": 2021,
